@@ -1,6 +1,8 @@
 # ProyectoIntegralTC1031A01709035
 Este es mi proyecto de la materia "Programación de estructura de datos y algoritmos fundamentales".
 
+Ya hay casos de prueba programados solo debe correr el programa y desplazar hacia arriba y verá los casos.
+
  Buscador de jugadores a partir de sus estadisticas básicas.
 Este proyecto se hizo a para simular la necesidad que tienen los reclutadores para encontrar jugadores para sus equipos.
 Se utiliza memoria estatica para ejemplificar las funciones del menú y se usan pocos parámetros en esta versión.
