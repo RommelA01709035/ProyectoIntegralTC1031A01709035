@@ -291,7 +291,7 @@ prueba2 = ordenaMergeDescendente(players);
 std::cout << "Prueba 2 - ordenaMergeDescendente:\n";
 std::cout << "  Resultado:\n";
 std::string respuestasInvertidas[] = {
-    "Nombre: Michael Gregoritsch Goles: 7 \n",
+    "Nombre: Michael Gregoritsch Goles: 7\n",
     "Nombre: Marcus Thuram Goles: 7\n",
     "Nombre: Daniel Szoboszlai Goles: 7\n",
     "Nombre: Raphael Guerreiro Goles: 7\n",
