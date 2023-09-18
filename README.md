@@ -17,7 +17,7 @@ Adicionalmente incluyo las funciones para filtrar un grupo de jugadores a partir
 
 
 
-## SICT0302B: Toma decisiones 
+## SICT0301: Evalúa los componentes 
 ### Hace un análisis de complejidad correcto y completo para todo el programa y sus compenetes,
 
 #### ordenaMergeAscendente y ordenaMergeDescendente
@@ -33,7 +33,7 @@ la funcion de mostrarJugadoresDeLiga: O(n) porque recorre el vector proporcional
 ### marcarJugador
 la funcion de marcarJugadores: O(n) porque recorre el vector proporcionalmente a su tamaño o sea hace el número de jugadores que estan en el vector, por lo que su cantidad de tiempo es lineal.
 
-
+## SICT0302: Toma decisiones 
 ### Selecciona un algoritmo de ordenamiento adecuado al problema y lo usa correctamente.
 
 Uso el algoritmo Merge Sort ya que su funcionamiento hace que sea más rápido y esto ayuda ya que estamos usando memoria estatica, por lo que al tener un número predefinido del tamaño de un vector va a ser agilmente acceder a los datos, además que no nos tenemos que preocupar por organizar la memoria (ya sea en liberar espacio o asignarlo). También use Merge Sort porque su tiempo de ejecución es el mismo (nlog(n)) en todos sus casos.
