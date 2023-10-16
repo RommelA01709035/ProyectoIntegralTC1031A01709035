@@ -35,12 +35,26 @@ la funcion de mostrarJugadoresDeLiga: O(n) porque recorre el vector proporcional
 ### marcarJugador
 la funcion de marcarJugadores: O(n) porque recorre el vector proporcionalmente a su tamaño o sea hace el número de jugadores que estan en el vector, por lo que su cantidad de tiempo es lineal.
 
+
+### Opción 6 del menu
+la funcion de marcarJugadores: Como usamos el comportamiento de StackLIst tendríamos que los métodos valen O(1), pero al usar un ciclo que va desde el incio hasta que terminar de vaciar el StackList entonces debemos tener en cuenta la cantidad de objetos en el StackList por lo tanto su notación es de O(n) porque dependerá su recorrido de la cantidad de objetos dentro.
+
+### For de prueba
+Los ciclos que uso para despliegar las pruebas: O(n) porque recorre el vector proporcionalmente a su tamaño o sea hace el número de jugadores que estan en el vector, por lo que su cantidad de tiempo es lineal
+
 ## SICT0302: Toma decisiones 
 ### Selecciona un algoritmo de ordenamiento adecuado al problema y lo usa correctamente.
 
 Uso el algoritmo Merge Sort ya que su funcionamiento hace que sea más rápido y esto ayuda ya que estamos usando memoria estatica, por lo que al tener un número predefinido del tamaño de un vector va a ser agilmente acceder a los datos, además que no nos tenemos que preocupar por organizar la memoria (ya sea en liberar espacio o asignarlo). También use Merge Sort porque su tiempo de ejecución es el mismo (nlog(n)) en todos sus casos.
 Las funciones donde se puede ver es en ordenaMergeDescendente (de la línea 27 a la 83) y ordenaMergeAscendente (Linea 84 a la 136) en el archivo main.cpp .
 
+## SICT0303: Implementa acciones científicas
 
+
+### Implementa mecanismos para consultar información de las estructras correctos.
+Use el StackList dado que la froma de ordenar de forma ascendente y descendente es más fácil utilizando un solo Stack porque solamente sacas los obbjetos de una forma y después lo metes de otra, en esta versión no esta implementada la función de esto, sin embargo se añade la clase. Se combino con un StackList dado que si ponía solamente el stack o usaba un STackVector iba a ocupar mucha memoria y minimo debería haber más de 100 jugadores por lo que si uso un vector tendría acceso más rápido a los objetos, pero ocuparía bastante memoria por lo que decidí priorizar el menor uso de memoria, pero  que el acceso sea más lento
+
+### Implementa mecanismos de lectura de archivos para cargar datos a las estructuras de manera correcta.
+En este segundo entregable no implemente archivos de texto, para el siguiente serán implementados.
 
 
