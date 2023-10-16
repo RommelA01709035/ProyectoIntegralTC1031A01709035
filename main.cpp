@@ -1,8 +1,8 @@
 /*
 Author: Rommel Pacheco Hernandez
 Fecha:14/09/2023
-Descripcion:Este programa filtra y ordena jugadores a partir de memoria estatica
-version:1.1
+Descripcion:Este programa filtra y ordena jugadores a partir de memoria estatica y dinamica
+version:1.2
 */
 #include <iostream>
 #include <string>
@@ -10,9 +10,12 @@ version:1.1
 #include <ostream>
 #include <sstream>
 #include <cstring>
-#include <algorithm>
+#include <fstream>
+
 
 #include "Player.h"
+#include "StackList.h"
+
 //==========================Funciones Algoritmos===================================================
     
     std::vector<Player> ordenaMergeDescendente(std::vector<Player>);
@@ -151,6 +154,7 @@ std::vector<Player>mostrarJugadoresDeLiga(std::vector<Player> jugadores, std::st
 }
 
 
+
 //filtra los jugadores a partir de su nombre de tipo string y de un vector
 void filtrarJugadores(std::vector<Player> jugadores, std::string nombre){
     bool encontrado = false;
@@ -165,14 +169,14 @@ void filtrarJugadores(std::vector<Player> jugadores, std::string nombre){
     }
 }
 
-Player marcarJugador(std::vector<Player>& jugadores, std::vector<Player>& marcadosModif,std::string nombre){
+Player marcarJugador(std::vector<Player>& jugadores, StackList<Player>& marcados,std::string nombre){
     bool encontrado = false;
     Player notFound;
     for (const auto& jugador : jugadores) {
         if (jugador.getNombre() == nombre) {
             std::cout << "Jugador encontrado: " << jugador.getNombre() << "\n Su valor es: " << jugador.getValor() << "\n Sus goles es: " << jugador.getGoles() << std::endl;     
             encontrado = true;
-            marcadosModif.push_back(jugador);
+            marcados.push(jugador);
             return jugador;
         }            
     }
@@ -210,12 +214,12 @@ int main() {
     bool continua = true;
     std::string nombre;
     Player vacio;
-    std::vector <Player> marcados;
-    std::vector<Player> marcadosModif;
+    StackList <Player> marcados;
+    StackList<Player>  marcadosCopy = marcados;
     //===============================Data==============================
     std::vector<Player> jugadores;
     std::vector<Player> players = jugadores;
-        players.push_back( Player("Neymar Jr.", "Extremo Izquierdo","LaLiga",20,156,40));
+        players.push_back( Player ("Neymar Jr.", "Extremo Izquierdo","LaLiga",20,156,40));
         players.push_back( Player("Lionel Messi", "Extremo Derecho", "LaLiga",35,235,70));
         players.push_back( Player("Cristiano Ronaldo","Extremo Izquierdo","LaLiga", 30,126,20));
         players.push_back( Player("Timo Werner","Delantero","Bundesliga", 19,79,45));
@@ -258,6 +262,9 @@ int main() {
         players.push_back( Player("Alex Berenguer","Medio Derecho","LaLiga", 10,452,14));
         players.push_back( Player("Michael Gregoritsch","Delantero","Bundesliga", 7,103,7));
     //===========================Casos de prueba=================================================    
+    
+    
+    
     std::vector<Player> prueba1 = players;
     std::vector<Player> prueba2 = players;
     std::string respuestas[] ={"Nombre: Lionel Messi Goles: 35\n","Nombre: Cristiano Ronaldo Goles: 30\n","Nombre: Robert Lewandoski Goles: 27\n",
@@ -291,7 +298,7 @@ prueba2 = ordenaMergeDescendente(players);
 std::cout << "Prueba 2 - ordenaMergeDescendente:\n";
 std::cout << "  Resultado:\n";
 std::string respuestasInvertidas[] = {
-    "Nombre: Michael Gregoritsch Goles: 7\n",
+    "Nombre: Michael Gregoritsch Goles: 7 \n",
     "Nombre: Marcus Thuram Goles: 7\n",
     "Nombre: Daniel Szoboszlai Goles: 7\n",
     "Nombre: Raphael Guerreiro Goles: 7\n",
@@ -334,6 +341,8 @@ std::string respuestasInvertidas[] = {
     "Nombre: Cristiano Ronaldo Goles: 30\n",
     "Nombre: Lionel Messi Goles: 35\n"
 }; 
+
+
 i = 0;
 for (const Player &player : prueba2) {
     std::cout << "Numero: "<< i << std::endl;
@@ -381,26 +390,6 @@ for (const Player &player : prueba5) {
     i++;
 } 
 
-std::vector <Player> marcadosPrueba;
-Player player1 = marcarJugador(players,marcadosPrueba,"Iker Munian");
-Player player2 = marcarJugador(players,marcadosPrueba,"Marcus Thuram");
-Player player3 = marcarJugador(players,marcadosPrueba,"Goku"); //No aparecera en la impresion
-std::cout << "Prueba 6 - marcarJugador:\n";
-std::cout << "  Resultado:\n";
-std::string respuestas6[] = {
-    "Nombre: Iker Munian Goles: 12\n",
-    "Nombre: Marcus Thuram Goles: 7\n"
-}; 
-i = 0;
-for (const Player &player : marcadosPrueba) {
-    std::cout << "Numero: "<< i << std::endl;
-    std::cout << "\nesperada " << respuestas6[i] << "\n programa " << player.toString() << "\n";
-    std::cout << (strcasecmp(respuestas6[i].c_str(), player.toString().c_str()) == 0 ? "success\n" : "fail\n");
-    i++;
-} 
-
-
-
 //===================================================Desarrollo del main=======================================================
     descripcion();
     while(continua == true){
@@ -431,7 +420,7 @@ for (const Player &player : marcadosPrueba) {
                 std::cout << "Escribe el nombre del jugador a seguir: "<< std::endl;
                 std::cin.ignore();
                 getline(std::cin, nombre);
-                vacio = marcarJugador(players, marcadosModif, nombre);
+                vacio = marcarJugador(players, marcadosCopy, nombre);
             }
             else{
                 std::cout << "Opcion incorrecta"<<std::endl;
@@ -461,7 +450,7 @@ for (const Player &player : marcadosPrueba) {
                 std::cout << "Escribe el nombre del jugador a seguir: "<< std::endl;
                 std::cin.ignore();
                 getline(std::cin, nombre);
-                vacio = marcarJugador(players, marcadosModif, nombre);
+                vacio = marcarJugador(players, marcadosCopy, nombre);
 
             }
             
@@ -485,10 +474,13 @@ for (const Player &player : marcadosPrueba) {
             }
         }
          
-        else if (opcion == 5){   
-            for (const auto& jugador : marcadosModif) {
-                std::cout << "Jugador registrado: " << jugador.getNombre() << "\n Su valor es: " << jugador.getValor() << "\n Sus goles es: " << jugador.getGoles() << std::endl;
+        else if (opcion == 5){ 
+            while (!marcadosCopy.empty()) {
+                Player jugador = marcadosCopy.top();
+                std::cout << "Nombre: " << jugador.getNombre() << ", Liga: " << jugador.getLiga() << ", Valor: " << jugador.getValor()<< ", Goles: " << jugador.getGoles() << std::endl;
+                marcadosCopy.pop(); 
             }
+
         }
         else if(opcion == 6){
             continua = false;
