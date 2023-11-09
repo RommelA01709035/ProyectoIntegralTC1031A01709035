@@ -39,6 +39,7 @@ la funcion de marcarJugadores: O(n) porque recorre el vector proporcionalmente a
 ### Opción 6 del menu
 la funcion de marcarJugadores: Como usamos el comportamiento de StackLIst tendríamos que los métodos valen O(1), pero al usar un ciclo que va desde el incio hasta que terminar de vaciar el StackList entonces debemos tener en cuenta la cantidad de objetos en el StackList por lo tanto su notación es de O(n) porque dependerá su recorrido de la cantidad de objetos dentro.
 
+
 ### For de prueba
 Los ciclos que uso para despliegar las pruebas: O(n) porque recorre el vector proporcionalmente a su tamaño o sea hace el número de jugadores que estan en el vector, por lo que su cantidad de tiempo es lineal
 
@@ -55,6 +56,9 @@ Las funciones donde se puede ver es en ordenaMergeDescendente (de la línea 27 a
 Use el StackList dado que la froma de ordenar de forma ascendente y descendente es más fácil utilizando un solo Stack porque solamente sacas los obbjetos de una forma y después lo metes de otra, en esta versión no esta implementada la función de esto, sin embargo se añade la clase. Se combino con un StackList dado que si ponía solamente el stack o usaba un STackVector iba a ocupar mucha memoria y minimo debería haber más de 100 jugadores por lo que si uso un vector tendría acceso más rápido a los objetos, pero ocuparía bastante memoria por lo que decidí priorizar el menor uso de memoria, pero  que el acceso sea más lento
 
 ### Implementa mecanismos de lectura de archivos para cargar datos a las estructuras de manera correcta.
-En este segundo entregable no implemente archivos de texto, para el siguiente serán implementados.
+Se implementa la lectura de archivos para ingresar la información guardada en los objetos de los jugadores y para las respuestas en los casos de prueba ahorrando memoria en no crear otros vectores.
+
+### Implementa mecanismos de escritura de archivos para guardar los datos  de las estructuras de manera correcta.
+Se implementa la escritura de archivos en los jugadores marcados ya que sería el reporte de los jugadores que te interesaron.
 
 
