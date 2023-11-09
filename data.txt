@@ -1,0 +1,42 @@
+Neymar Jr., Extremo Izquierdo,LaLiga,20,156,40
+Lionel Messi, Extremo Derecho, LaLiga,35,235,70
+Cristiano Ronaldo,Extremo Izquierdo,LaLiga, 30,126,20
+Timo Werner,Delantero,Bundesliga, 19,79,45
+Lois Openda, Delantero,Bundesliga,15,200,25
+Donyell Malen, Delantero, Bundesliga,20,300,30
+Leroy Sane,Extremo Izquierdo,Bundesliga, 21,403,45
+Niklas Fullkrug,Delantero,Bundesliga, 16,168,30
+Serge Gnabry, Extremo Derecho,Bundesliga,13,264,40
+Anthony Modeste, Delantero, Bundesliga,7,147,15
+Harry Kane,Delantero,Bundesliga, 25,308,90
+Benjamin Sesko,Delantero,Bundesliga, 11,146,22
+Sadio Mane, Extremo Izquierdo,Bundesliga,14,563,56
+Christopher Nkunku, Segundo Delantero, Bundesliga,25,687,80
+Robert Lewandoski,Delantero,LaLiga, 27,240,52
+Antoine Griezmann,Delantero,Laliga, 17,324,60
+Karim Benzema, Segundo Delantero,LaLiga,22,598,30
+Rodrigo Goes, Extremo Derecho, LaLiga,13,421,60
+Vinicus Jr,Extremo Izquierdo,LaLiga, 20,368,80
+Iago Aspas,Delantero,Delantero, 18,274,30
+Marcos Acuña,Medio izquierdo,LaLiga, 9,906,38
+Moussa Diaby, Medio Derecho,Bundesliga,16,469,70
+Yanick Carrasco, Medio Izquierdo, LaLiga,11,835,25
+Marcos Llorente,Medio Derecho,LaLiga, 9,874,35
+Ousmane Dembele,Extremo Derecho,LaLiga, 15,971,45
+Raphael Guerreiro, Medio Izquierdo,Bundesliga,7,756,40
+Patric Schick, Delantero, Bundesliga,25,320,45
+Sebastian Haller,Delantero,Bundesliga, 12,258,20
+Raphinha,Extremo Derecho,LaLiga, 13,785,56
+Vicenzo Grifo, Medio Izquierdo,Bundesliga,16,587,30
+Marco Asensio, Extremo Derecho, LaLiga,10,160,43
+Iker Munian,Medio Izquierdo,LaLiga, 12,452,35
+Mikel Oyazarbal,Extremo Izquierdo,Laliga, 19,79,45
+Alejandro Gomez, Extremo Izquierdo,LaLiga,15,478,15
+Mario Gotze, Segundo Delantero, Bundesliga,8,741,20
+Kolo Muani,Delantero,Bundesliga, 26,487,75
+Ferran Torres,Extremo Izquierdo,LaLiga, 10,236,15
+Daniel Szoboszlai, Medio Izquierdo,Bundesliga,7,1200,60
+Joselu, Delantero, LaLiga,16,95,12
+Marcus Thuram,Delantero,Bundesliga, 7,205,8
+Alex Berenguer,Medio Derecho,LaLiga, 10,452,14
+Michael Gregoritsch,Delantero,Bundesliga, 7,103,7

@@ -1,0 +1,3 @@
+Nombre: Alex Berenguer, Liga: LaLiga, Valor: 14, Goles: 10
+Nombre: Ferran Torres, Liga: LaLiga, Valor: 15, Goles: 10
+Nombre: Marcus Thuram, Liga: Bundesliga, Valor: 8, Goles: 7

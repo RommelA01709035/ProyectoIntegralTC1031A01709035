@@ -1,3 +1,5 @@
+#ifndef PLAYER_H
+#define PLAYER_H
 #include <iostream>
 #include <string>
 #include <vector>
@@ -32,7 +34,7 @@ class Player {
         }
         std::string toString() const {
             std::stringstream ss;
-            ss << "Nombre: " << nombre <<" Goles: " << Goles<<"\n";
+            ss << "Nombre: " << nombre <<" Goles: " << Goles;
         return ss.str();
         }
     };  
@@ -105,3 +107,5 @@ class Player {
     void Player::setValor(int valor){
         this ->valor = valor;
     }
+
+#endif

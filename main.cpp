@@ -146,7 +146,7 @@ std::vector<Player>mostrarJugadoresDeLiga(std::vector<Player> jugadores, std::st
         if (jugador.getLiga() == ligaBuscada) {
             filtrado.push_back(jugador);
             std::cout<< "================================================"<< std::endl;
-            std::cout << "Jugador encontrado: " << jugador.getNombre() << "\n Su valor es: " << jugador.getValor() << "\n Sus goles es: " << jugador.getGoles() << std::endl;
+            std::cout << "Jugador encontrado: " << jugador.getNombre() << " Su valor es: " << jugador.getValor() << " Sus goles es: " << jugador.getGoles() << std::endl;
             std::cout<< "================================================"<< std::endl;
         }
     }    
@@ -160,7 +160,7 @@ void filtrarJugadores(std::vector<Player> jugadores, std::string nombre){
     bool encontrado = false;
     for (const auto& jugador : jugadores) {
         if (jugador.getNombre() == nombre) {
-            std::cout << "Jugador encontrado: " << jugador.getNombre() << "\n Su valor es: " << jugador.getValor() << "\n Sus goles es: " << jugador.getGoles() << std::endl;     
+            std::cout << "Jugador encontrado: " << jugador.getNombre() << " Su valor es: " << jugador.getValor() << " Sus goles es: " << jugador.getGoles() << std::endl;     
             encontrado = true;
         }            
     }
@@ -169,47 +169,119 @@ void filtrarJugadores(std::vector<Player> jugadores, std::string nombre){
     }
 }
 
+//===========================================Escritura de datos===========================================================
+void guardaMarcados(Player j) {
+    std::ofstream escribe ("C:/Users/herna/Desktop/Algoritmos/Proyecto Integra oficial/Marcados.txt", std::ofstream::app);
+    if (escribe.is_open()) {
+        escribe << "Nombre: " << j.getNombre() << ", Liga: " << j.getLiga()
+                << ", Valor: " << j.getValor() << ", Goles: " << j.getGoles() << std::endl;
+    }
+    escribe.close();
+}
+
 Player marcarJugador(std::vector<Player>& jugadores, StackList<Player>& marcados,std::string nombre){
     bool encontrado = false;
     Player notFound;
     for (const auto& jugador : jugadores) {
         if (jugador.getNombre() == nombre) {
-            std::cout << "Jugador encontrado: " << jugador.getNombre() << "\n Su valor es: " << jugador.getValor() << "\n Sus goles es: " << jugador.getGoles() << std::endl;     
+            std::cout << "Jugador encontrado: " << jugador.getNombre() << " Su valor es: " << jugador.getValor() << " Sus goles es: " << jugador.getGoles() << std::endl;     
             encontrado = true;
             marcados.push(jugador);
+            guardaMarcados(jugador);
             return jugador;
-        }            
+        } 
+           
     }
     return notFound;
 }
 
 
+
+
 //===========================Funciones del Menu==========================================
+
+
 void menuGeneral(){
     
-    std::cout << "\n\tMenu";
-    std::cout << "\n\t 1.- Jugadores de LaLiga";
-    std::cout << "\n\t 2.- Jugadores de la Bundesliga"; 
-    std::cout << "\n\t 3.- Busque a un jugador"; 
-    std::cout<<"\n\t 4. Ordenar de forma Ascendente ";
-    std::cout << "\n\t 5.- mostrar jugadores marcados";     
-    std::cout << "\n\t 6.- Salir\n";     
+    std::cout << "Menu" << std::endl;
+    std::cout << "1.- Jugadores de LaLiga" << std::endl;
+    std::cout << "2.- Jugadores de la Bundesliga" << std::endl;
+    std::cout << "3. Buscar a un jugador" << std::endl;
+    std::cout << "4. Ordenar de forma Ascendente" << std::endl;
+    std::cout << "5.- Mostrar jugadores marcados" << std::endl;
+    std::cout << "6.- Salir" << std::endl;
 }
 
 void descripcion(){
-    std::cout << "\n\tBienvenido al Recluta jugadores\n";
-    std::cout << "\n\t Este software esta hecho con el fin de ordenarlas mejores stats de un grupo de jugadores";
-    std::cout << "\n\t y escojas tu a quienes seguir\n"; 
-    
+    std::cout << "Bienvenido al Recluta jugadores" << std::endl;
+    std::cout << "Este software está hecho con el fin de ordenar las mejores stats de un grupo de jugadores" << std::endl;
+    std::cout << "y escojas a quiénes seguir" << std::endl;
 }
 void menuAcciones(){
-    std::cout << "\n\t 1.-Ordenar de forma descendente\n";
-    std::cout << "\n\t2.- Ordenar de forma ascendente\n";
-    std::cout << "\n\t3.- Seguir jugador\n"; 
+    std::cout << "1.-Ordenar de forma descendente" << std::endl;
+    std::cout << "2.- Ordenar de forma ascendente" << std::endl;
+    std::cout << "3.- Seguir jugador" << std::endl;
 }
-    
-    //===========================================Main===========================================================
+
+//Carga los jugadores desde un archivo usando objetos de tipo Player
+std::vector<Player> cargarJugadoresDesdeArchivo(const std::string& nombreArchivo) {
+    std::vector<Player> jugadores;  // Vector para almacenar los jugadores
+
+    std::ifstream archivo(nombreArchivo);
+    if (!archivo) {
+        std::cerr << "Error al abrir el archivo: " << nombreArchivo << std::endl;
+        return jugadores;  // Retorna un vector vacío en caso de error
+    }
+
+    std::string linea;
+    while (std::getline(archivo, linea)) {
+        std::istringstream ss(linea);
+        std::string nombre, liga, posicion;
+        int goles, promedioPases, valor;
+        
+        std::getline(ss, nombre, ',');
+        std::getline(ss, liga, ',');
+        std::getline(ss, posicion, ',');
+        ss >> goles;
+        ss.ignore();  
+        ss >> promedioPases;
+        ss.ignore();  
+        ss >> valor;
+
+
+        Player jugador(nombre, liga, posicion, goles, promedioPases, valor);
+        jugadores.push_back(jugador);
+    }
+
+    return jugadores;
+}
+
+
+//Carga los jugadores desde un archivo usando cadenas de texto
+std::vector<std::string> cargarRespuestasDesdeArchivo(const std::string& nombreArchivo) {
+    std::ifstream archivo(nombreArchivo);
+
+    if (!archivo.is_open()) {
+        std::cerr << "No se pudo abrir el archivo." << std::endl;
+        return std::vector<std::string>();
+    }
+
+    std::vector<std::string> respuestas;
+
+    std::string linea;
+    while (std::getline(archivo, linea)) {
+        respuestas.push_back(linea); // Agregar cada línea como una respuesta
+    }
+
+    archivo.close();
+
+    return respuestas;
+}
+
+//===========================================Main===========================================================
 int main() {
+
+    
     int opcion;
     bool continua = true;
     std::string nombre;
@@ -217,137 +289,41 @@ int main() {
     StackList <Player> marcados;
     StackList<Player>  marcadosCopy = marcados;
     //===============================Data==============================
-    std::vector<Player> jugadores;
-    std::vector<Player> players = jugadores;
-        players.push_back( Player ("Neymar Jr.", "Extremo Izquierdo","LaLiga",20,156,40));
-        players.push_back( Player("Lionel Messi", "Extremo Derecho", "LaLiga",35,235,70));
-        players.push_back( Player("Cristiano Ronaldo","Extremo Izquierdo","LaLiga", 30,126,20));
-        players.push_back( Player("Timo Werner","Delantero","Bundesliga", 19,79,45));
-        players.push_back( Player ("Lois Openda", "Delantero","Bundesliga",15,200,25));
-        players.push_back( Player("Donyell Malen", "Delantero", "Bundesliga",20,300,30));
-        players.push_back( Player("Leroy Sane","Extremo Izquierdo","Bundesliga", 21,403,45));
-        players.push_back( Player("Niklas Fullkrug","Delantero","Bundesliga", 16,168,30));
-        players.push_back( Player ("Serge Gnabry", "Extremo Derecho","Bundesliga",13,264,40));
-        players.push_back( Player("Anthony Modeste", "Delantero", "Bundesliga",7,147,15));
-        players.push_back( Player("Harry Kane","Delantero","Bundesliga", 25,308,90));
-        players.push_back( Player("Benjamin Sesko","Delantero","Bundesliga", 11,146,22));
-        players.push_back( Player ("Sadio Mane", "Extremo Izquierdo","Bundesliga",14,563,56));
-        players.push_back( Player("Christopher Nkunku", "Segundo Delantero", "Bundesliga",25,687,80));
-        players.push_back( Player("Robert Lewandoski","Delantero","LaLiga", 27,240,52));
-        players.push_back( Player("Antoine Griezmann","Delantero","Laliga", 17,324,60));
-        players.push_back( Player ("Karim Benzema", "Segundo Delantero","LaLiga",22,598,30));
-        players.push_back( Player("Rodrigo Goes", "Extremo Derecho", "LaLiga",13,421,60));
-        players.push_back( Player("Vinicus Jr","Extremo Izquierdo","LaLiga", 20,368,80));
-        players.push_back( Player("Iago Aspas","Delantero","Delantero", 18,274,30));
-        players.push_back( Player("Marcos Acuña","Medio izquierdo","LaLiga", 9,906,38));
-        players.push_back( Player ("Moussa Diaby", "Medio Derecho","Bundesliga",16,469,70));
-        players.push_back( Player("Yanick Carrasco", "Medio Izquierdo", "LaLiga",11,835,25));
-        players.push_back( Player("Marcos Llorente","Medio Derecho","LaLiga", 9,874,35));
-        players.push_back( Player("Ousmane Dembele","Extremo Derecho","LaLiga", 15,971,45));
-        players.push_back( Player ("Raphael Guerreiro", "Medio Izquierdo","Bundesliga",7,756,40));
-        players.push_back( Player("Patric Schick", "Delantero", "Bundesliga",25,320,45));
-        players.push_back( Player("Sebastian Haller","Delantero","Bundesliga", 12,258,20));
-        players.push_back( Player("Raphinha","Extremo Derecho","LaLiga", 13,785,56));
-        players.push_back( Player("Vicenzo Grifo", "Medio Izquierdo","Bundesliga",16,587,30));
-        players.push_back( Player("Marco Asensio", "Extremo Derecho", "LaLiga",10,160,43));
-        players.push_back( Player("Iker Munian","Medio Izquierdo","LaLiga", 12,452,35));
-        players.push_back( Player("Mikel Oyazarbal","Extremo Izquierdo","Laliga", 19,79,45));
-        players.push_back( Player ("Alejandro Gomez", "Extremo Izquierdo","LaLiga",15,478,15));
-        players.push_back( Player("Mario Gotze", "Segundo Delantero", "Bundesliga",8,741,20));
-        players.push_back( Player("Kolo Muani","Delantero","Bundesliga", 26,487,75));
-        players.push_back( Player("Ferran Torres","Extremo Izquierdo","LaLiga", 10,236,15));
-        players.push_back( Player ("Daniel Szoboszlai", "Medio Izquierdo","Bundesliga",7,1200,60));
-        players.push_back( Player("Joselu", "Delantero", "LaLiga",16,95,12));
-        players.push_back( Player("Marcus Thuram","Delantero","Bundesliga", 7,205,8));
-        players.push_back( Player("Alex Berenguer","Medio Derecho","LaLiga", 10,452,14));
-        players.push_back( Player("Michael Gregoritsch","Delantero","Bundesliga", 7,103,7));
+    std::vector<Player> players = cargarJugadoresDesdeArchivo("C:/Users/herna/Desktop/Algoritmos/Proyecto Integra oficial/data.txt");
+    for (const Player& jugador : players) {
+        std::cout << jugador.toString() << std::endl;
+    }
     //===========================Casos de prueba=================================================    
-    
-    
     
     std::vector<Player> prueba1 = players;
     std::vector<Player> prueba2 = players;
-    std::string respuestas[] ={"Nombre: Lionel Messi Goles: 35\n","Nombre: Cristiano Ronaldo Goles: 30\n","Nombre: Robert Lewandoski Goles: 27\n",
-    "Nombre: Kolo Muani Goles: 26\n", "Nombre: Patric Schick Goles: 25\n","Nombre: Christopher Nkunku Goles: 25\n","Nombre: Harry Kane Goles: 25\n",
-    "Nombre: Karim Benzema Goles: 22\n", "Nombre: Leroy Sane Goles: 21\n","Nombre: Vinicus Jr Goles: 20\n",
-    "Nombre: Donyell Malen Goles: 20\n","Nombre: Neymar Jr. Goles: 20\n","Nombre: Mikel Oyazarbal Goles: 19\n",
-    "Nombre: Timo Werner Goles: 19\n", "Nombre: Iago Aspas Goles: 18\n","Nombre: Antoine Griezmann Goles: 17\n","Nombre: Joselu Goles: 16\n",
-    "Nombre: Vicenzo Grifo Goles: 16\n", "Nombre: Moussa Diaby Goles: 16\n","Nombre: Niklas Fullkrug Goles: 16\n",
-    "Nombre: Alejandro Gomez Goles: 15\n","Nombre: Ousmane Dembele Goles: 15\n","Nombre: Lois Openda Goles: 15\n",
-    "Nombre: Sadio Mane Goles: 14\n", "Nombre: Raphinha Goles: 13\n","Nombre: Rodrigo Goes Goles: 13\n","Nombre: Serge Gnabry Goles: 13\n",
-    "Nombre: Iker Munian Goles: 12\n","Nombre: Sebastian Haller Goles: 12\n","Nombre: Yanick Carrasco Goles: 11\n",
-    "Nombre: Benjamin Sesko Goles: 11\n", "Nombre: Alex Berenguer Goles: 10\n","Nombre: Ferran Torres Goles: 10\n","Nombre: Marco Asensio Goles: 10\n",
-    "Nombre: Marcos Llorente Goles: 9\n",
-    "Nombre: Marcos Acuña Goles: 9\n", "Nombre: Mario Gotze Goles: 8\n","Nombre: Michael Gregoritsch Goles: 7\n","Nombre: Marcus Thuram Goles: 7\n",
-    "Nombre: Daniel Szoboszlai Goles: 7\n","Nombre: Raphael Guerreiro Goles: 7\n","Nombre: Anthony Modeste Goles: 7\n"
-    };
-
+    
 int i = 0;
 prueba1 = ordenaMergeAscendente(players);
-std::cout << "Prueba 1 - ordenaMergeAscendente:\n";
-std::cout << "  Resultado:\n";
+std::cout << "Prueba 1 - ordenaMergeAscendente:";
+std::cout << "  Resultado:" << std::endl;
+std::vector <std::string> respuestas = cargarRespuestasDesdeArchivo("C:/Users/herna/Desktop/Algoritmos/Proyecto Integra oficial/respuestas.txt");
 
 for (const Player &player : prueba1) {
-    std::cout << "Numero: "<< i << std::endl;
-    std::cout << "\nesperada " << respuestas[i] << "\n programa " << player.toString() << "\n";
-    std::cout << (strcasecmp(respuestas[i].c_str(), player.toString().c_str()) == 0 ? "success\n" : "fail\n");
+    std::cout<<"\n" << "Numero: "<< i  <<std::endl;
+    std::cout << "esperada " << respuestas[i]  << std::endl;
+    std::cout << " programa " << player.toString() << std::endl;
+    std::cout << (strcasecmp(respuestas[i].c_str(), player.toString().c_str()) == 0 ? "success" : "fail") << std::endl;
     i++;
 }
       
 prueba2 = ordenaMergeDescendente(players);
-std::cout << "Prueba 2 - ordenaMergeDescendente:\n";
-std::cout << "  Resultado:\n";
-std::string respuestasInvertidas[] = {
-    "Nombre: Michael Gregoritsch Goles: 7 \n",
-    "Nombre: Marcus Thuram Goles: 7\n",
-    "Nombre: Daniel Szoboszlai Goles: 7\n",
-    "Nombre: Raphael Guerreiro Goles: 7\n",
-    "Nombre: Anthony Modeste Goles: 7\n"   ,
-    "Nombre: Mario Gotze Goles: 8\n",
-    "Nombre: Marcos Llorente Goles: 9\n",
-    "Nombre: Marcos Acuña Goles: 9\n",
-    "Nombre: Alex Berenguer Goles: 10\n",
-    "Nombre: Ferran Torres Goles: 10\n",
-    "Nombre: Marco Asensio Goles: 10\n",
-    "Nombre: Yanick Carrasco Goles: 11\n",
-    "Nombre: Benjamin Sesko Goles: 11\n",
-    "Nombre: Iker Munian Goles: 12\n",
-    "Nombre: Sebastian Haller Goles: 12\n",
-    "Nombre: Raphinha Goles: 13\n",
-    "Nombre: Rodrigo Goes Goles: 13\n",
-    "Nombre: Serge Gnabry Goles: 13\n",
-    "Nombre: Sadio Mane Goles: 14\n",
-    "Nombre: Alejandro Gomez Goles: 15\n",
-    "Nombre: Ousmane Dembele Goles: 15\n",
-    "Nombre: Lois Openda Goles: 15\n",
-    "Nombre: Joselu Goles: 16\n",
-    "Nombre: Vicenzo Grifo Goles: 16\n",
-    "Nombre: Moussa Diaby Goles: 16\n",
-    "Nombre: Niklas Fullkrug Goles: 16\n",
-    "Nombre: Antoine Griezmann Goles: 17\n",
-    "Nombre: Iago Aspas Goles: 18\n",
-    "Nombre: Mikel Oyazarbal Goles: 19\n",
-    "Nombre: Timo Werner Goles: 19\n",
-    "Nombre: Vinicus Jr Goles: 20\n",
-    "Nombre: Donyell Malen Goles: 20\n",
-    "Nombre: Neymar Jr. Goles: 20\n",
-    "Nombre: Leroy Sane Goles: 21\n",
-    "Nombre: Karim Benzema Goles: 22\n",
-    "Nombre: Patric Schick Goles: 25\n",
-    "Nombre: Christopher Nkunku Goles: 25\n",
-    "Nombre: Harry Kane Goles: 25\n"    ,
-    "Nombre: Kolo Muani Goles: 26\n",
-    "Nombre: Robert Lewandoski Goles: 27\n",
-    "Nombre: Cristiano Ronaldo Goles: 30\n",
-    "Nombre: Lionel Messi Goles: 35\n"
-}; 
-
+std::cout << "Prueba 2 - ordenaMergeDescendente:";
+std::cout << "  Resultado:";
+std::vector <std::string> respuestasInvertidas = cargarRespuestasDesdeArchivo("C:/Users/herna/Desktop/Algoritmos/Proyecto Integra oficial/respuestasInvertidas.txt");
+    
 
 i = 0;
 for (const Player &player : prueba2) {
-    std::cout << "Numero: "<< i << std::endl;
-    std::cout << "\nesperada " << respuestasInvertidas[i] << "\n programa " << player.toString() << "\n";
-    std::cout << (strcasecmp(respuestasInvertidas[i].c_str(), player.toString().c_str()) == 0 ? "success\n" : "fail\n");
+    std::cout<<"\n" << "Numero: "<< i  <<std::endl;
+    std::cout << "esperada " << respuestasInvertidas[i]  << std::endl;
+    std::cout << " programa " << player.toString() << std::endl;
+    std::cout << (strcasecmp(respuestasInvertidas[i].c_str(), player.toString().c_str()) == 0 ? "success" : "fail") << std::endl;
     i++;
 }      
 //Output: "No se encontro un jugador con ese nombre"
@@ -360,36 +336,7 @@ std::cout << "Prueba 4" << std::endl;
 filtrarJugadores(players,"Lionel Messi");
 
 std::vector <Player>prueba5 = mostrarJugadoresDeLiga(players,"LaLiga");
-std::cout << "Prueba 5 - mostrarJugadoresDeLiga:\n";
-std::cout << "  Resultado:\n";
-std::string respuestas5[] = {
-    "Nombre: Neymar Jr. Goles: 20\n",
-    "Nombre: Lionel Messi Goles: 35\n",
-    "Nombre: Cristiano Ronaldo Goles: 30\n",
-    "Nombre: Robert Lewandoski Goles: 27\n",
-    "Nombre: Karim Benzema Goles: 22\n",
-    "Nombre: Rodrigo Goes Goles: 13\n",
-    "Nombre: Vinicus Jr Goles: 20\n",
-    "Nombre: Marcos Acuña Goles: 9\n",
-    "Nombre: Yanick Carrasco Goles: 11\n",
-    "Nombre: Marcos Llorente Goles: 9\n",
-    "Nombre: Ousmane Dembele Goles: 15\n",
-    "Nombre: Raphinha Goles: 13\n",
-    "Nombre: Marco Asensio Goles: 10\n",
-    "Nombre: Iker Munian Goles: 12\n",
-    "Nombre: Alejandro Gomez Goles: 15\n",
-    "Nombre: Ferran Torres Goles: 10\n",
-    "Nombre: Joselu Goles: 16\n",
-    "Nombre: Alex Berenguer Goles: 10\n"
-}; 
-i = 0;
-for (const Player &player : prueba5) {
-    std::cout << "Numero: "<< i << std::endl;
-    std::cout << "\nesperada " << respuestas5[i] << "\n programa " << player.toString() << "\n";
-    std::cout << (strcasecmp(respuestas5[i].c_str(), player.toString().c_str()) == 0 ? "success\n" : "fail\n");
-    i++;
-} 
-
+  
 //===================================================Desarrollo del main=======================================================
     descripcion();
     while(continua == true){
@@ -406,13 +353,13 @@ for (const Player &player : prueba5) {
             if(opcion == 1){
                 jugadoresClasificados = ordenaMergeDescendente(jugadoresClasificados);
                 for (const auto& jugador : jugadoresClasificados) {
-                std::cout << "Jugador encontrado: " << jugador.getNombre() << "\n Su valor es: " << jugador.getValor() << "\n Sus goles es: " << jugador.getGoles() << std::endl;
+                std::cout << "Jugador encontrado: " << jugador.getNombre() << " Su valor es: " << jugador.getValor() << " Sus goles es: " << jugador.getGoles() << std::endl;
                 }
             }
             else if(opcion == 2){
                 jugadoresClasificados = ordenaMergeAscendente(jugadoresClasificados);
                 for (const auto& jugador : jugadoresClasificados) {
-                std::cout << "Jugador encontrado: " << jugador.getNombre() << "\n Su valor es: " << jugador.getValor() << "\n Sus goles es: " << jugador.getGoles() << std::endl;
+                std::cout << "Jugador encontrado: " << jugador.getNombre() << " Su valor es: " << jugador.getValor() << " Sus goles es: " << jugador.getGoles() << std::endl;
                 }
             }
             else if(opcion == 3){
@@ -421,6 +368,7 @@ for (const Player &player : prueba5) {
                 std::cin.ignore();
                 getline(std::cin, nombre);
                 vacio = marcarJugador(players, marcadosCopy, nombre);
+                
             }
             else{
                 std::cout << "Opcion incorrecta"<<std::endl;
@@ -436,13 +384,13 @@ for (const Player &player : prueba5) {
             if(opcion == 1){
                 jugadoresClasificados = ordenaMergeDescendente(jugadoresClasificados);
                 for (const auto& jugador : jugadoresClasificados) {
-                std::cout << "Jugador encontrado: " << jugador.getNombre() << "\n Su valor es: " << jugador.getValor() << "\n Sus goles es: " << jugador.getGoles() << std::endl;
+                std::cout << "Jugador encontrado: " << jugador.getNombre() << " Su valor es: " << jugador.getValor() << " Sus goles es: " << jugador.getGoles() << std::endl;
                 }
             }
             else if(opcion == 2){
                 jugadoresClasificados = ordenaMergeAscendente(jugadoresClasificados);
                 for (const auto& jugador : jugadoresClasificados) {
-                std::cout << "Jugador encontrado: " << jugador.getNombre() << "\n Su valor es: " << jugador.getValor() << "\n Sus goles es: " << jugador.getGoles() << std::endl;
+                std::cout << "Jugador encontrado: " << jugador.getNombre() << " Su valor es: " << jugador.getValor() << " Sus goles es: " << jugador.getGoles() << std::endl;
                 }
             }
             else if(opcion == 3){
@@ -451,6 +399,7 @@ for (const Player &player : prueba5) {
                 std::cin.ignore();
                 getline(std::cin, nombre);
                 vacio = marcarJugador(players, marcadosCopy, nombre);
+
 
             }
             
@@ -470,16 +419,19 @@ for (const Player &player : prueba5) {
             std::cout<<"Ordenados: "<<std::endl;
             jugadoresOrdenados = ordenaMergeAscendente(players);
             for (const auto& jugador : jugadoresOrdenados) {
-                std::cout << "Jugador encontrado: " << jugador.getNombre() << "\n Su valor es: " << jugador.getValor() << "\n Sus goles es: " << jugador.getGoles() << std::endl;
+                std::cout << "Jugador encontrado: " << jugador.getNombre() << " Su valor es: " << jugador.getValor() << " Sus goles es: " << jugador.getGoles() << std::endl;
             }
         }
          
         else if (opcion == 5){ 
+            std::cout << "Sigues a estos jugadores" << std::endl;
             while (!marcadosCopy.empty()) {
                 Player jugador = marcadosCopy.top();
                 std::cout << "Nombre: " << jugador.getNombre() << ", Liga: " << jugador.getLiga() << ", Valor: " << jugador.getValor()<< ", Goles: " << jugador.getGoles() << std::endl;
-                marcadosCopy.pop(); 
+                marcadosCopy.pop();   
             }
+
+
 
         }
         else if(opcion == 6){
