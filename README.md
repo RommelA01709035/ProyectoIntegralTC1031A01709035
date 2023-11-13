@@ -53,6 +53,9 @@ Los ciclos que uso para despliegar las pruebas: O(n) porque recorre el vector pr
 Uso el algoritmo Merge Sort ya que su funcionamiento hace que sea más rápido y esto ayuda ya que estamos usando memoria estatica, por lo que al tener un número predefinido del tamaño de un vector va a ser agilmente acceder a los datos, además que no nos tenemos que preocupar por organizar la memoria (ya sea en liberar espacio o asignarlo). También use Merge Sort porque su tiempo de ejecución es el mismo (nlog(n)) en todos sus casos.
 Las funciones donde se puede ver es en ordenaMergeDescendente (de la línea 27 a la 83) y ordenaMergeAscendente (Linea 84 a la 136) en el archivo main.cpp .
 
+### Selecciona una estructura de datos adecuada al problema y lo usa correctamente.
+Use un Stack List dado que los jugadores marcados que es donde se usa la estructura de datos podrán tenerse al alcance ya que las propiedades del stack en su forma de inserción y borrado son rápidas ya que solo debe quitar o insertar en top O(1). Mientras que la incorporación de la lista hace un dinamismo donde no nos tenemos que preocupar del tamaño actual del stack lo que nos permite tener grandes cantidades de datos después si es que el proyecto crece a mayor escala en el sentido de incorporar más ligas y diferentes categorias.
+
 ## SICT0303: Implementa acciones científicas
 
 
