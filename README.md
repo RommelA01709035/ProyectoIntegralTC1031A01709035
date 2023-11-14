@@ -16,7 +16,9 @@ Se utiliza memoria estatica para ejemplificar las funciones del menú y se usan 
 >
 Adicionalmente incluyo las funciones para filtrar un grupo de jugadores a partir de su liga y ver sus atributos, también dentro de las funciones del menu se añaden opciones para ordenar estos jugadores ya sea de forma ascendete o descendente, una función de buscar un jugador en especifico y finalmente otra opción para ver que jugadores estan marcados 
 
+### Nota importante
 
+Para poner los archivos de texto debes descargar los archivos de texto y poner su ruta completa.
 
 
 ## SICT0301: Evalúa los componentes 
