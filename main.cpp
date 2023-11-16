@@ -1,8 +1,8 @@
 /*
 Author: Rommel Pacheco Hernandez
-Fecha:14/09/2023
-Descripcion:Este programa filtra y ordena jugadores a partir de memoria estatica y dinamica
-version:1.2
+Fecha:14/11/2023
+Descripcion:Este programa filtra y ordena jugadores con el uso de algoritmos y estructuras de datos fundamentales
+version:1.3
 */
 #include <iostream>
 #include <string>
@@ -15,6 +15,7 @@ version:1.2
 
 #include "Player.h"
 #include "StackList.h"
+#include "splay.h"
 
 //==========================Funciones Algoritmos===================================================
     
@@ -171,7 +172,7 @@ void filtrarJugadores(std::vector<Player> jugadores, std::string nombre){
 
 //===========================================Escritura de datos===========================================================
 void guardaMarcados(Player j) {
-    std::ofstream escribe ("C:/Users/herna/Desktop/Algoritmos/Proyecto Integra oficial/Marcados.txt", std::ofstream::app);
+    std::ofstream escribe ("C:/Users/herna/Desktop/Algoritmos/Proyecto Integra oficial/ProyectoIntegralTC1031A01709035/Marcados.txt", std::ofstream::app);
     if (escribe.is_open()) {
         escribe << "Nombre: " << j.getNombre() << ", Liga: " << j.getLiga()
                 << ", Valor: " << j.getValor() << ", Goles: " << j.getGoles() << std::endl;
@@ -179,22 +180,22 @@ void guardaMarcados(Player j) {
     escribe.close();
 }
 
-Player marcarJugador(std::vector<Player>& jugadores, StackList<Player>& marcados,std::string nombre){
+Player marcarJugador(std::vector<Player>& jugadores, SplayTree<Player>& marcados, std::string nombre) {
     bool encontrado = false;
     Player notFound;
+
     for (const auto& jugador : jugadores) {
         if (jugador.getNombre() == nombre) {
-            std::cout << "Jugador encontrado: " << jugador.getNombre() << " Su valor es: " << jugador.getValor() << " Sus goles es: " << jugador.getGoles() << std::endl;     
+            std::cout << "Jugador encontrado: " << jugador.getNombre() << " Su valor es: " << jugador.getValor() << " Sus goles es: " << jugador.getGoles() << std::endl;
             encontrado = true;
-            marcados.push(jugador);
-            guardaMarcados(jugador);
+            marcados.insert(jugador);
+            guardaMarcados(jugador); 
             return jugador;
-        } 
-           
+        }
     }
+
     return notFound;
 }
-
 
 
 
@@ -225,12 +226,13 @@ void menuAcciones(){
 
 //Carga los jugadores desde un archivo usando objetos de tipo Player
 std::vector<Player> cargarJugadoresDesdeArchivo(const std::string& nombreArchivo) {
-    std::vector<Player> jugadores;  // Vector para almacenar los jugadores
-
+    std::cout<< "Data Cargada"<<std::endl;
+    std::vector<Player> jugadores;  
     std::ifstream archivo(nombreArchivo);
+
     if (!archivo) {
         std::cerr << "Error al abrir el archivo: " << nombreArchivo << std::endl;
-        return jugadores;  // Retorna un vector vacío en caso de error
+        return jugadores; 
     }
 
     std::string linea;
@@ -286,13 +288,15 @@ int main() {
     bool continua = true;
     std::string nombre;
     Player vacio;
-    StackList <Player> marcados;
-    StackList<Player>  marcadosCopy = marcados;
+    SplayTree<Player> marcados;
+
     //===============================Data==============================
-    std::vector<Player> players = cargarJugadoresDesdeArchivo("C:/Users/herna/Desktop/Algoritmos/Proyecto Integra oficial/data.txt");
+    std::vector<Player> players = cargarJugadoresDesdeArchivo("C:/Users/herna/Desktop/Algoritmos/Proyecto Integra oficial/ProyectoIntegralTC1031A01709035/data.txt");
     for (const Player& jugador : players) {
         std::cout << jugador.toString() << std::endl;
     }
+
+
     //===========================Casos de prueba=================================================    
     
     std::vector<Player> prueba1 = players;
@@ -302,10 +306,10 @@ int i = 0;
 prueba1 = ordenaMergeAscendente(players);
 std::cout << "Prueba 1 - ordenaMergeAscendente:";
 std::cout << "  Resultado:" << std::endl;
-std::vector <std::string> respuestas = cargarRespuestasDesdeArchivo("C:/Users/herna/Desktop/Algoritmos/Proyecto Integra oficial/respuestas.txt");
+std::vector <std::string> respuestas = cargarRespuestasDesdeArchivo("C:/Users/herna/Desktop/Algoritmos/Proyecto Integra oficial/ProyectoIntegralTC1031A01709035/respuestas.txt");
 
 for (const Player &player : prueba1) {
-    std::cout<<"\n" << "Numero: "<< i  <<std::endl;
+    std::cout<<"/n" << "Numero: "<< i  <<std::endl;
     std::cout << "esperada " << respuestas[i]  << std::endl;
     std::cout << " programa " << player.toString() << std::endl;
     std::cout << (strcasecmp(respuestas[i].c_str(), player.toString().c_str()) == 0 ? "success" : "fail") << std::endl;
@@ -315,12 +319,12 @@ for (const Player &player : prueba1) {
 prueba2 = ordenaMergeDescendente(players);
 std::cout << "Prueba 2 - ordenaMergeDescendente:";
 std::cout << "  Resultado:";
-std::vector <std::string> respuestasInvertidas = cargarRespuestasDesdeArchivo("C:/Users/herna/Desktop/Algoritmos/Proyecto Integra oficial/respuestasInvertidas.txt");
+std::vector <std::string> respuestasInvertidas = cargarRespuestasDesdeArchivo("C:/Users/herna/Desktop/Algoritmos/Proyecto Integra oficial/ProyectoIntegralTC1031A01709035/respuestasInvertidas.txt");
     
 
 i = 0;
 for (const Player &player : prueba2) {
-    std::cout<<"\n" << "Numero: "<< i  <<std::endl;
+    std::cout<<"/n" << "Numero: "<< i  <<std::endl;
     std::cout << "esperada " << respuestasInvertidas[i]  << std::endl;
     std::cout << " programa " << player.toString() << std::endl;
     std::cout << (strcasecmp(respuestasInvertidas[i].c_str(), player.toString().c_str()) == 0 ? "success" : "fail") << std::endl;
@@ -367,8 +371,7 @@ std::vector <Player>prueba5 = mostrarJugadoresDeLiga(players,"LaLiga");
                 std::cout << "Escribe el nombre del jugador a seguir: "<< std::endl;
                 std::cin.ignore();
                 getline(std::cin, nombre);
-                vacio = marcarJugador(players, marcadosCopy, nombre);
-                
+                vacio = marcarJugador(players, marcados, nombre);
             }
             else{
                 std::cout << "Opcion incorrecta"<<std::endl;
@@ -398,7 +401,7 @@ std::vector <Player>prueba5 = mostrarJugadoresDeLiga(players,"LaLiga");
                 std::cout << "Escribe el nombre del jugador a seguir: "<< std::endl;
                 std::cin.ignore();
                 getline(std::cin, nombre);
-                vacio = marcarJugador(players, marcadosCopy, nombre);
+                vacio = marcarJugador(players, marcados, nombre);
 
 
             }
@@ -425,14 +428,7 @@ std::vector <Player>prueba5 = mostrarJugadoresDeLiga(players,"LaLiga");
          
         else if (opcion == 5){ 
             std::cout << "Sigues a estos jugadores" << std::endl;
-            while (!marcadosCopy.empty()) {
-                Player jugador = marcadosCopy.top();
-                std::cout << "Nombre: " << jugador.getNombre() << ", Liga: " << jugador.getLiga() << ", Valor: " << jugador.getValor()<< ", Goles: " << jugador.getGoles() << std::endl;
-                marcadosCopy.pop();   
-            }
-
-
-
+            marcados.inorder();
         }
         else if(opcion == 6){
             continua = false;
