@@ -8,11 +8,17 @@ Este proyecto se hizo a para simular la necesidad que tienen los reclutadores pa
 Se utiliza memoria estatica para ejemplificar las funciones del menú y se usan pocos parámetros en esta versión.
 >Ejemplo 1: Marca a seguir un jugador, (Joselu)
 > 
->Paso 1: Introducir el peso el número de opcion en el menu. Por ejemplo: 1.
+>Paso 1: Introducir el número de opcion en el menu. Por ejemplo: 1.
 >Paso 2: Introducir la opción deseada. Por ejemplo : 3.
 >Paso 3: Escribe el nombre del jugador. Por ejemplo: Joselu
+>Paso 4: Introducir el número de opcion en el menu. Por ejemplo: 2.
+>Paso 2: Introducir la opción deseada. Por ejemplo : 3.
+>Paso 3: Escribe el nombre del jugador. Por ejemplo: Harry Kane
+>Paso 1: Introducir el número de opcion en el menu. Por ejemplo: 1.
+>Paso 2: Introducir la opción deseada. Por ejemplo : 3.
+>Paso 3: Escribe el nombre del jugador. Por ejemplo: Lionel Messi
 > 
->Con estos datos se manda a llamar a la función marcarJugador que devuelve un objeto de tipo player. Donde si el jugador es encontrado va imprimir algunos atributos y lo guardará en un vector local en main, sino retornará el objeto "notFound".
+>Con estos datos se manda a llamar a la función marcarJugador que devuelve un objeto de tipo player. Donde si el jugador es encontrado va imprimir algunos atributos y lo guardará en un archivo de texto local y también lo guardará en el SplayTree llamado marcados (la opción 5 del menú despliega en pantalla todos los jugadores que haz marcado hasta el momento), sino retornará el objeto "notFound".
 >
 Adicionalmente incluyo las funciones para filtrar un grupo de jugadores a partir de su liga y ver sus atributos, también dentro de las funciones del menu se añaden opciones para ordenar estos jugadores ya sea de forma ascendete o descendente, una función de buscar un jugador en especifico y finalmente otra opción para ver que jugadores estan marcados 
 
