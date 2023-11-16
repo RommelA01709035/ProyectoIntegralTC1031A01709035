@@ -62,7 +62,8 @@ Uso el algoritmo Merge Sort ya que su funcionamiento hace que sea más rápido y
 Las funciones donde se puede ver es en ordenaMergeDescendente (de la línea 27 a la 83) y ordenaMergeAscendente (Linea 84 a la 136) en el archivo main.cpp .
 
 ### Selecciona una estructura de datos adecuada al problema y lo usa correctamente.
-Use un Stack List dado que los jugadores marcados que es donde se usa la estructura de datos podrán tenerse al alcance ya que las propiedades del stack en su forma de inserción y borrado son rápidas ya que solo debe quitar o insertar en top O(1). Mientras que la incorporación de la lista hace un dinamismo donde no nos tenemos que preocupar del tamaño actual del stack lo que nos permite tener grandes cantidades de datos después si es que el proyecto crece a mayor escala en el sentido de incorporar más ligas y diferentes categorias.
+Use el SplayTree porque quiero mantener los nodos que el usuario elija de mla forma más rápida posible por lo que el SPlayTree tiene la logica adecuada para eso además que no debo usar exceptions como lo tenía que hacer con el StackList al usar el Stack. En cuanto a la logica de la opción 5 del menu es guarddar jugadores en esa estrcutra de datos porque son los jugadores que entre todos te van a interesar asi que primero seleccionas esos y haces un grupo más pequeño y después si implementará dentro de esa opción la opción de buscar a un jugador especifico pues en una perspectiva de programación tendría a los jugadores que estas siguiendo  más cerca y los ecnontraría más rápido
+
 
 ## SICT0303: Implementa acciones científicas
 
