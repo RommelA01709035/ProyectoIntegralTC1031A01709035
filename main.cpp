@@ -14,7 +14,6 @@ version:1.3
 
 
 #include "Player.h"
-#include "StackList.h"
 #include "splay.h"
 
 //==========================Funciones Algoritmos===================================================
