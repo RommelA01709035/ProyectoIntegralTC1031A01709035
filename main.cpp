@@ -171,7 +171,7 @@ void filtrarJugadores(std::vector<Player> jugadores, std::string nombre){
 
 //===========================================Escritura de datos===========================================================
 void guardaMarcados(Player j) {
-    std::ofstream escribe ("C:/Users/herna/Desktop/Algoritmos/Proyecto Integra oficial/ProyectoIntegralTC1031A01709035/Marcados.txt", std::ofstream::app);
+    std::ofstream escribe ("Marcados.txt", std::ofstream::app);
     if (escribe.is_open()) {
         escribe << "Nombre: " << j.getNombre() << ", Liga: " << j.getLiga()
                 << ", Valor: " << j.getValor() << ", Goles: " << j.getGoles() << std::endl;
@@ -290,7 +290,7 @@ int main() {
     SplayTree<Player> marcados;
 
     //===============================Data==============================
-    std::vector<Player> players = cargarJugadoresDesdeArchivo("C:/Users/herna/Desktop/Algoritmos/Proyecto Integra oficial/ProyectoIntegralTC1031A01709035/data.txt");
+    std::vector<Player> players = cargarJugadoresDesdeArchivo("data.txt");
     for (const Player& jugador : players) {
         std::cout << jugador.toString() << std::endl;
     }
@@ -305,7 +305,7 @@ int i = 0;
 prueba1 = ordenaMergeAscendente(players);
 std::cout << "Prueba 1 - ordenaMergeAscendente:";
 std::cout << "  Resultado:" << std::endl;
-std::vector <std::string> respuestas = cargarRespuestasDesdeArchivo("C:/Users/herna/Desktop/Algoritmos/Proyecto Integra oficial/ProyectoIntegralTC1031A01709035/respuestas.txt");
+std::vector <std::string> respuestas = cargarRespuestasDesdeArchivo("respuestas.txt");
 
 for (const Player &player : prueba1) {
     std::cout<<"/n" << "Numero: "<< i  <<std::endl;
@@ -318,7 +318,7 @@ for (const Player &player : prueba1) {
 prueba2 = ordenaMergeDescendente(players);
 std::cout << "Prueba 2 - ordenaMergeDescendente:";
 std::cout << "  Resultado:";
-std::vector <std::string> respuestasInvertidas = cargarRespuestasDesdeArchivo("C:/Users/herna/Desktop/Algoritmos/Proyecto Integra oficial/ProyectoIntegralTC1031A01709035/respuestasInvertidas.txt");
+std::vector <std::string> respuestasInvertidas = cargarRespuestasDesdeArchivo("respuestasInvertidas.txt");
     
 
 i = 0;
