@@ -49,12 +49,6 @@ la funcion de marcarJugadores: O(n) porque recorre el archivo de acuerdo a las l
 ### Opción 5 del menu
 la funcion de marcarJugadores: Como usamos el comportamiento de StackLIst tendríamos que los métodos valen O(1), pero al usar un ciclo que va desde el incio hasta que terminar de vaciar el StackList entonces debemos tener en cuenta la cantidad de objetos en el StackList por lo tanto su notación es de O(n) porque dependerá su recorrido de la cantidad de objetos dentro.
 
-### opción 1,2 y 4 del menu
-Las opciones 1, 2 y 4 del menú utilizan un ciclo for para recorrer los vectores que se usan para almacenar los jugadores que se filtran gracias a sus funciones, por lo que va a tener una notación O(0) lineal ya que va a recorrer todos los jugadores que filtra uno por uno y esto dependerá de que tantos jugadores necesite filtrar.
-
-### For de prueba
-Los ciclos que uso para despliegar las pruebas: O(n) porque recorre el vector proporcionalmente a su tamaño o sea hace el número de jugadores que estan en el vector, por lo que su cantidad de tiempo es lineal
-
 ## SICT0302: Toma decisiones 
 ### Selecciona un algoritmo de ordenamiento adecuado al problema y lo usa correctamente.
 
