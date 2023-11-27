@@ -9,8 +9,11 @@ Se utiliza memoria estatica para ejemplificar las funciones del menú y se usan 
 >Ejemplo 1: Marca a seguir un jugador, (Joselu)
 > 
 >Paso 1: Introducir el número de opcion en el menu. Por ejemplo: 1.
+>
 >Paso 2: Introducir la opción deseada. Por ejemplo : 3.
+>
 >Paso 3: Escribe el nombre del jugador. Por ejemplo: Joselu
+>
 >Paso 4: Introducir el número de opcion en el menu. Por ejemplo: 2.
 >Paso 2: Introducir la opción deseada. Por ejemplo : 3.
 >Paso 3: Escribe el nombre del jugador. Por ejemplo: Harry Kane
