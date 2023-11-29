@@ -9,23 +9,27 @@ Se utiliza memoria estatica para ejemplificar las funciones del menú y se usan 
 >Ejemplo 1: Marca a seguir un jugador, (Joselu)
  
 Paso 1: Introducir el número de opcion en el menu. Por ejemplo: 1.
+
 Paso 2: Introducir la opción deseada. Por ejemplo : 3.
+
 Paso 3: Escribe el nombre del jugador. Por ejemplo: Joselu
+
 Paso 4: Introducir el número de opcion en el menu. Por ejemplo: 2.
+
 Paso 2: Introducir la opción deseada. Por ejemplo : 3.
+
 Paso 3: Escribe el nombre del jugador. Por ejemplo: Harry Kane
+
 Paso 1: Introducir el número de opcion en el menu. Por ejemplo: 1.
+
 Paso 2: Introducir la opción deseada. Por ejemplo : 3.
+
 Paso 3: Escribe el nombre del jugador. Por ejemplo: Lionel Messi
+
  
 >Con estos datos se manda a llamar a la función marcarJugador que devuelve un objeto de tipo player. Donde si el jugador es encontrado va imprimir algunos atributos y lo guardará en un archivo de texto local y también lo guardará en el SplayTree llamado marcados (la opción 5 del menú despliega en pantalla todos los jugadores que haz marcado hasta el momento), sino retornará el objeto "notFound".
 
 Adicionalmente incluyo las funciones para filtrar un grupo de jugadores a partir de su liga y ver sus atributos, también dentro de las funciones del menu se añaden opciones para ordenar estos jugadores ya sea de forma ascendete o descendente, una función de buscar un jugador en especifico y finalmente otra opción para ver que jugadores estan marcados 
-
-### Nota importante
-
-Para poner los archivos de texto debes descargar los archivos de texto y poner su ruta completa.
-
 
 ## SICT0301: Evalúa los componentes 
 ### Hace un análisis de complejidad correcto y completo para todo el programa y sus compenetes,
@@ -47,7 +51,8 @@ la funcion de marcarJugadores: O(n) porque recorre el vector proporcionalmente a
 la funcion de marcarJugadores: O(n) porque recorre el archivo de acuerdo a las líneas que hay y los va guardando en el vector en caso de la función "cargarJugadoresDesdeArchivo" y la función "cargarRespuestasDesdeArchivo" es lo mismo.
 
 ### Opción 5 del menu
-la funcion de marcarJugadores: Como usamos el comportamiento de StackLIst tendríamos que los métodos valen O(1), pero al usar un ciclo que va desde el incio hasta que terminar de vaciar el StackList entonces debemos tener en cuenta la cantidad de objetos en el StackList por lo tanto su notación es de O(n) porque dependerá su recorrido de la cantidad de objetos dentro.
+la funcion de marcarJugadores: Como usamos la funciòn toString de la clase LInear (que representa un Hash) tendríamos que el método vale O(n) porque va a depender de que tan llena este la tabla.
+
 
 ## SICT0302: Toma decisiones 
 ### Selecciona un algoritmo de ordenamiento adecuado al problema y lo usa correctamente.
@@ -56,8 +61,7 @@ Uso el algoritmo Merge Sort ya que su funcionamiento hace que sea más rápido y
 Las funciones donde se puede ver es en ordenaMergeDescendente (de la línea 27 a la 83) y ordenaMergeAscendente (Linea 84 a la 136) en el archivo main.cpp .
 
 ### Selecciona una estructura de datos adecuada al problema y lo usa correctamente.
-Use el SplayTree porque quiero mantener los nodos que el usuario elija de mla forma más rápida posible por lo que el SPlayTree tiene la logica adecuada para eso además que no debo usar exceptions como lo tenía que hacer con el StackList al usar el Stack. En cuanto a la logica de la opción 5 del menu es guarddar jugadores en esa estrcutra de datos porque son los jugadores que entre todos te van a interesar asi que primero seleccionas esos y haces un grupo más pequeño y después si implementará dentro de esa opción la opción de buscar a un jugador especifico pues en una perspectiva de programación tendría a los jugadores que estas siguiendo  más cerca y los ecnontraría más rápido
-
+Use el Hash dado que al inicializarlo puedo contemplar a todos los jugadores y además tienen una clave unica lo cual hace que en el mejor de los casos la notación sea de O(1) sin embargo en el peor de los casos puede llegar a ser de O(n) que también es algo bueno considerando que otras estructuras son peores en esta situación, como vas a meter pocos jugadores que son los que te interesan lo que va a pasar es que como un jugador esta registrado por su nombre completo no se repetiría la posición y además es poco probable que llenes la tabla completa porque no te van a interesar todos los jugadores en una aplicación real de este software.
 
 ## SICT0303: Implementa acciones científicas
 
