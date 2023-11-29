@@ -61,7 +61,7 @@ Uso el algoritmo Merge Sort ya que su funcionamiento hace que sea más rápido y
 Las funciones donde se puede ver es en ordenaMergeDescendente (de la línea 27 a la 83) y ordenaMergeAscendente (Linea 84 a la 136) en el archivo main.cpp .
 
 ### Selecciona una estructura de datos adecuada al problema y lo usa correctamente.
-Use el Hash dado que al inicializarlo puedo contemplar a todos los jugadores y además tienen una clave unica lo cual hace que en el mejor de los casos la notación sea de O(1) sin embargo en el peor de los casos puede llegar a ser de O(n) que también es algo bueno considerando que otras estructuras son peores en esta situación, como vas a meter pocos jugadores que son los que te interesan lo que va a pasar es que como un jugador esta registrado por su nombre completo no se repetiría la posición y además es poco probable que llenes la tabla completa porque no te van a interesar todos los jugadores en una aplicación real de este software.
+Use el Hash dado que al inicializarlo puedo contemplar a todos los jugadores y además tienen una clave unica lo cual hace que en el mejor de los casos la notación sea de O(1) sin embargo en el peor de los casos puede llegar a ser de O(n) (colisiones) que también es algo bueno considerando que otras estructuras son peores en esta situación, como vas a meter pocos jugadores que son los que te interesan lo que va a pasar es que como un jugador esta registrado por su nombre completo no se repetiría la posición y además es poco probable que llenes la tabla completa porque no te van a interesar todos los jugadores en una aplicación real de este software.
 
 ## SICT0303: Implementa acciones científicas
 
