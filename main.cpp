@@ -327,15 +327,12 @@ int main() {
   Player vacio;
   //===============================Data==============================
   std::vector<Player> players = cargarJugadoresDesdeArchivo("data.txt");
-  for (const Player &jugador : players) {
-    std::cout << jugador.toString() << std::endl;
-  }
 
   Linear<std::string, Player> marcados(players.size(), "");
 
   //===========================Casos de
   // prueba=================================================
-
+/*
   std::vector<Player> prueba1 = players;
   std::vector<Player> prueba2 = players;
   prueba1 = ordenaMergeAscendente(players);
@@ -384,7 +381,7 @@ int main() {
   filtrarJugadores(players, "Lionel Messi");
 
   std::vector<Player> prueba5 = mostrarJugadoresDeLiga(players, "LaLiga");
-
+*/
   //===================================================Desarrollo del
   // main=======================================================
   descripcion();
