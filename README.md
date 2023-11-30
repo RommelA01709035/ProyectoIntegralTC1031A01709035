@@ -53,6 +53,8 @@ la funcion de marcarJugadores: O(n) porque recorre el archivo de acuerdo a las l
 ### Opción 5 del menu
 la funcion de marcarJugadores: Como usamos la funciòn toString de la clase LInear (que representa un Hash) tendríamos que el método vale O(n) porque va a depender de que tan llena este la tabla.
 
+### Analisis asintotico total
+
 
 ## SICT0302: Toma decisiones 
 ### Selecciona un algoritmo de ordenamiento adecuado al problema y lo usa correctamente.
@@ -64,11 +66,10 @@ Las funciones donde se puede ver es en ordenaMergeDescendente (de la línea 27 a
 Use el Hash dado que al inicializarlo puedo contemplar a todos los jugadores y además tienen una clave unica lo cual hace que en el mejor de los casos la notación sea de O(1) sin embargo en el peor de los casos puede llegar a ser de O(n) (colisiones) que también es algo bueno considerando que otras estructuras son peores en esta situación, como vas a meter pocos jugadores que son los que te interesan lo que va a pasar es que como un jugador esta registrado por su nombre completo no se repetiría la posición y además es poco probable que llenes la tabla completa porque no te van a interesar todos los jugadores en una aplicación real de este software.
 
 ## SICT0303: Implementa acciones científicas
-
+En este caso al ser un hash utiliza el resultado del hash (donde un hash%size de la tabla) y devuelve el valor de acuerdo a la clave que se proporcionó.
 
 ### Implementa mecanismos para consultar información de las estructras correctos.
-Use el StackList dado que la froma de ordenar de forma ascendente y descendente es más fácil utilizando un solo Stack porque solamente sacas los obbjetos de una forma y después lo metes de otra, en esta versión no esta implementada la función de esto, sin embargo se añade la clase. Se combino con un StackList dado que si ponía solamente el stack o usaba un STackVector iba a ocupar mucha memoria y minimo debería haber más de 100 jugadores por lo que si uso un vector tendría acceso más rápido a los objetos, pero ocuparía bastante memoria por lo que decidí priorizar el menor uso de memoria, pero  que el acceso sea más lento
-
+EN este caso utilice un Hash 
 ### Implementa mecanismos de lectura de archivos para cargar datos a las estructuras de manera correcta.
 Se implementa la lectura de archivos para ingresar la información guardada en los objetos de los jugadores y para las respuestas en los casos de prueba ahorrando memoria en no crear otros vectores.
 
