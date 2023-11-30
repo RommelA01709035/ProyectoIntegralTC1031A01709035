@@ -54,7 +54,12 @@ la funcion de marcarJugadores: O(n) porque recorre el archivo de acuerdo a las l
 la funcion de marcarJugadores: Como usamos la funciòn toString de la clase LInear (que representa un Hash) tendríamos que el método vale O(n) porque va a depender de que tan llena este la tabla.
 
 ### Analisis asintotico total
-El peor caso del programa es que el usuario ordene los jugadorres y que estos esten en su ordenados alreves por lo tanto su O(n log n) es hasta lo más complejo que puede llegar el programa
+
+Ejemplificando el caso promedio de consulta
+opcion 1 despliega los jugadores de "LaLiga" O(n) 
+1.1 ordena con merge (n log n)
+regresa al menu y el resultado final es:
+O(n)+nlogn = nlogn (porque esogemos el caso más complejo)
 
 ## SICT0302: Toma decisiones 
 ### Selecciona un algoritmo de ordenamiento adecuado al problema y lo usa correctamente.
