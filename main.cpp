@@ -470,10 +470,12 @@ int main() {
     else if (opcion == 5) {
       std::cout << "Sigues a estos jugadores" << std::endl;
       std::cout << marcados.toString() << std::endl;
-    } else if (opcion == 6) { std::string nombreABuscar;
+    } else if (opcion == 6) { 
+      std::string nombreABuscar;
       std::cout << "Ingrese el nombre del jugador a buscar: ";
-      std::cin >> nombreABuscar;
-
+      std::cin.ignore();
+      getline(std::cin, nombreABuscar);
+      
       try {
           Player jugadorEncontrado = marcados.get(nombreABuscar);
           std::cout << "Jugador encontrado: " <<         
