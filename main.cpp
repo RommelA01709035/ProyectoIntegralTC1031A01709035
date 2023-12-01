@@ -470,8 +470,20 @@ int main() {
     else if (opcion == 5) {
       std::cout << "Sigues a estos jugadores" << std::endl;
       std::cout << marcados.toString() << std::endl;
-    } else if (opcion == 6) {
+    } else if (opcion == 6) { std::string nombreABuscar;
+      std::cout << "Ingrese el nombre del jugador a buscar: ";
+      std::cin >> nombreABuscar;
+
+      try {
+          Player jugadorEncontrado = marcados.get(nombreABuscar);
+          std::cout << "Jugador encontrado: " <<         
+        jugadorEncontrado.toString() << std::endl;
+      } catch (const std::runtime_error &e) {
+
+          std::cerr << "Error: Jugador no encontrado" << std::endl;
+      }
       continua = false;
+
     } else {
       std::cout << "Opcion incorrecta" << std::endl;
     }
