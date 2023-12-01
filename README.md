@@ -74,7 +74,14 @@ Use el Hash dado que al inicializarlo puedo contemplar a todos los jugadores y a
 En este caso al ser un hash utiliza el resultado del hash (donde un hash%size de la tabla) y devuelve el valor de acuerdo a la clave que se proporcionó.
 
 ### Implementa mecanismos para consultar información de las estructras correctos.
-EN este caso utilice un Hash 
+EN este caso utilice un Hash y el método donde hace una busqueda y esto se puede ver así:
+
+ Paso 1: seleccione la opcion 1 del menu
+ Paso 1.1 Seleccione la opcion 3 del menu "Marcar jugador" y escriba literalmente Joselu o cualquier nombre de algún jugador cargado.
+ Paso 2 ponga la opción 6 del menu
+ Paso 3 Escriba el nombre que puso de algún jugador marcado en este caso Joselu
+ Paso 4 aparecerá en pantalla
+
 ### Implementa mecanismos de lectura de archivos para cargar datos a las estructuras de manera correcta.
 Se implementa la lectura de archivos para ingresar la información guardada en los objetos de los jugadores y para las respuestas en los casos de prueba ahorrando memoria en no crear otros vectores.
 
